@@ -1,0 +1,30 @@
+rules:
+  - id: custom-eval-detected
+    languages:
+      - javascript
+      - typescript
+    message: >
+      Detected the use of eval(). eval() can be dangerous if used to evaluate
+
+      dynamic content. If this content can be input from outside the program, this
+
+      may be a code injection vulnerability. Ensure evaluated content is not definable
+
+      by external sources.
+    metadata:
+      asvs:
+        control_id: 5.2.4 Dynamic Code Execution Features
+        control_url: https://github.com/OWASP/ASVS/blob/master/4.0/en/0x13-V5-Validation-Sanitization-Encoding.md#v52-sanitization-and-sandboxing
+        section: V5 Validation, Sanitization and Encoding
+        version: "4"
+      category: security
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated
+        Code ('Eval Injection')"
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]
+      owasp: "A1: Injection"
+      technology:
+        - browser
+    patterns:
+      - pattern-not: eval("...")
+      - pattern: eval(...)
+    severity: WARNING
